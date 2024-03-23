@@ -34,7 +34,7 @@ while True:
     # Gather user inputs.
     CustCtr += 1
     while True:
-        FirstName = "Sally" #input("Enter the customer's first name: ").title()
+        FirstName = input("Enter the customer's first name: ").title()
         if FirstName == "":
             print()
             print("Data entry error - must fill out the customer's first name.")
@@ -46,7 +46,7 @@ while True:
             break
 
     while True:
-        LastName = "Sparrow" #input("Enter the customer's last name: ").title()
+        LastName = input("Enter the customer's last name: ").title()
         if LastName == "":
             print()
             print("Data entry error - must fill out the customer's last name.")
@@ -56,7 +56,7 @@ while True:
             break
 
     while True:
-        StAdd = "123 Funny Lane" #input("Enter the customer's street address: ")
+        StAdd = input("Enter the customer's street address: ")
         if StAdd == "":
             print()
             print("Data entry error - must fill out the customer's street address.")
@@ -65,7 +65,7 @@ while True:
             break
 
     while True:
-        City = "Funnyville" #input("Enter the customer's city: ").title()
+        City = input("Enter the customer's city: ").title()
         if City == "":
             print()
             print("Data entry error - must fill out the customer's city.")
@@ -75,7 +75,7 @@ while True:
 
     ProvLst = ["NL", "NS", "NB", "PE", "PQ", "ON", "MB", "SK", "AB", "BC", "NT", "YT", "NV"]
     while True:
-        Prov = "NL" #input("Enter the cusomer's province (XX): ").upper()
+        Prov = input("Enter the cusomer's province (XX): ").upper()
         if Prov == "":
             print()
             print("Data entry error - province cannot be blank")
@@ -91,10 +91,10 @@ while True:
         else:
             break
         
-    PostalCode = "s2s2s2" #Functions.PostalCode("Enter the customer's postal code: ")
+    PostalCode = Functions.PostalCode("Enter the customer's postal code: ")
 
     while True:
-        PhNum = "7091234567" #input("Enter the customer's phone number (##########): ")
+        PhNum = input("Enter the customer's phone number (##########): ")
         if PhNum.isdigit() == False:
             print()
             print("Data entry error - phone number must be digits.")
@@ -108,7 +108,7 @@ while True:
     
     while True:
         try:
-            CarsInsured = 1 #input("Enter the number of cars to be insured: ")
+            CarsInsured = input("Enter the number of cars to be insured: ")
             CarsInsured = int(CarsInsured)
         except:
             print()
@@ -123,9 +123,9 @@ while True:
                 break
 
 
-    XtraLiability = "Y" #Functions.YesOrNo("Does the customer desire extra liability up to $1,000,000 (Y/N): ")
-    GlassCover = "N" #Functions.YesOrNo("Does the customer desire glass coverage (Y/N): ")
-    LoanCar = "N" #Functions.YesOrNo("Does the customer require a loaner car (Y/N): ")
+    XtraLiability = Functions.YesOrNo("Does the customer desire extra liability up to $1,000,000 (Y/N): ")
+    GlassCover = Functions.YesOrNo("Does the customer desire glass coverage (Y/N): ")
+    LoanCar = Functions.YesOrNo("Does the customer require a loaner car (Y/N): ")
     
     PayMethodLst = ["Full", "Monthly"]
     while True:
@@ -261,7 +261,7 @@ while True:
     LastName += FirstName
     print(f" {LastName:<30s} Number of cars insured: {CarsInsured}")
     print(f" {PhNum:<10s}                     Extra Liability:        {Functions.YesOrNoFull(XtraLiability):<3s}")
-    print(f" {StAdd:<15s}                Glass Coverage:         {Functions.YesOrNoFull(GlassCover):<3s}")
+    print(f" {StAdd:<20s}           Glass Coverage:         {Functions.YesOrNoFull(GlassCover):<3s}")
     City += ", "
     City += Prov
     print(f" {City:<15s}                Loaner Car:             {Functions.YesOrNoFull(LoanCar):<3s}")
@@ -274,7 +274,7 @@ while True:
     print(f"                  Insurance Premium: {Functions.FDollar2(InsPremium):>9s}")
     print(f"                  Total Extra Cost:    {Functions.FDollar2(TotalExtraCost):>7s}")
     print(f"                  HST:                 {Functions.FDollar2(HST):>5s}")
-    print(f"                  Total Cost:        {Functions.FDollar2(TotalCost):>8s}")
+    print(f"                  Total Cost:        {Functions.FDollar2(TotalCost):>9s}")
     print()
     print(f"                  Monthly Payment:     {Functions.FDollar2(MonthlyPayment):>7s}")
     print("----------------------------------------------------------------")
@@ -290,6 +290,10 @@ while True:
     print("               ---------------------------------")        
     for i in range(len(ClaimNumLst)):
         print(f"               {ClaimNumLst[i]:<5d}    {Functions.FDateS(ClaimDateLst[i]):<10s}    {Functions.FDollar2(ClaimAmtLst[i]):>10s}")
+    if len(ClaimNumLst) == 0:
+        print()
+        print("                       No previous claims")
+    print()
     print("================================================================") 
 
 
