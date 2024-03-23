@@ -1,6 +1,6 @@
 # Description: A program designed to help One Stop Insurance Company enter/calculate insurance policy information for the customers
 # Author: Adam Stevenson
-# Date(s): March 14-22, 2024
+# Date(s): March 14-23, 2024
 
 
 # Define required libraries.
