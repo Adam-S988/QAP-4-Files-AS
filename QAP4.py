@@ -108,7 +108,7 @@ while True:
     
     while True:
         try:
-            CarsInsured = 2 #input("Enter the number of cars to be insured: ")
+            CarsInsured = 1 #input("Enter the number of cars to be insured: ")
             CarsInsured = int(CarsInsured)
         except:
             print()
@@ -173,16 +173,17 @@ while True:
         while True:
             print()
             try:
-                OldClaimNum = input("Enter customer's previous claim number ('0' to end): ")
+                OldClaimNum = (input("Enter customer's previous claim number ('0' to end): "))
                 OldClaimNum = int(OldClaimNum)
             except:
                 print()
                 print("Data entry error - must enter a valid claim number. ")
                 print()
+                continue
             if OldClaimNum == "":
-                    print()
-                    print("Data entry error - old claim number or a '0' must be input.")
-                    print()
+                print()
+                print("Data entry error - old claim number or a '0' must be input.")
+                print()
             elif OldClaimNum == 0:
                 break
             else:
@@ -223,10 +224,16 @@ while True:
     # Perform required calculations.
     if XtraLiability == 'N':
         XTRA_LIABILITY = 0
+    else:
+        XTRA_LIABILITY *= CarsInsured
     if GlassCover == 'N':
         GLASS_COVER = 0
+    else:
+        GLASS_COVER *= CarsInsured
     if LoanCar == 'N':
         LOAN_CAR = 0
+    else:
+        LOAN_CAR *= CarsInsured
     
     TotalExtraCost = XTRA_LIABILITY + GLASS_COVER + LOAN_CAR
     InsPremium = FIRST_AUTO + (FIRST_AUTO * XTRA_AUTO_RATE * (CarsInsured - 1))
@@ -241,11 +248,13 @@ while True:
 
     # Display results
     print()
-    print("                        One Stop Insurance")
+    print("================================================================") 
+    print()
+    print("                       One Stop Insurance")
     print()
     print("----------------------------------------------------------------")
     print()
-    print("                       Customer Information")
+    print("                      Customer Information")
     print()
     print(f" Claim Number: {CustCtr:<5d}")
     LastName += ", "
@@ -262,7 +271,7 @@ while True:
     print("                      Payment Information")
     print()
     print(f"                  Down Payment:       {Functions.FDollar2(DownPay):>8s}")
-    print(f"                  Insurance Premium: {Functions.FDollar2(InsPremium):>8s}")
+    print(f"                  Insurance Premium: {Functions.FDollar2(InsPremium):>9s}")
     print(f"                  Total Extra Cost:    {Functions.FDollar2(TotalExtraCost):>7s}")
     print(f"                  HST:                 {Functions.FDollar2(HST):>5s}")
     print(f"                  Total Cost:        {Functions.FDollar2(TotalCost):>8s}")
@@ -275,12 +284,13 @@ while True:
     print(f" Invoice Date: {Functions.FDateM(TODAY):<9s}          First Payment Date: {Functions.FDateM(PayDate):<9s}")
     print("----------------------------------------------------------------")
     print()
-    print("                          Previous Claims")
+    print("                         Previous Claims")
     print()
-    print("              Claim #  Claim Date        Amount")
-    print("----------------------------------------------------------------")        
+    print("               Claim #  Claim Date        Amount")
+    print("               ---------------------------------")        
     for i in range(len(ClaimNumLst)):
-        print(f"              {ClaimNumLst[i]:<5d}    {Functions.FDateS(ClaimDateLst[i]):<10s}    {Functions.FDollar2(ClaimAmtLst[i]):>10s}")
+        print(f"               {ClaimNumLst[i]:<5d}    {Functions.FDateS(ClaimDateLst[i]):<10s}    {Functions.FDollar2(ClaimAmtLst[i]):>10s}")
+    print("================================================================") 
 
 
 # Any housekeeping duties at the end of the program
